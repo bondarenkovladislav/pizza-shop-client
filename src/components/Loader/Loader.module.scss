@@ -1,0 +1,20 @@
+.loader-wrapper {
+  min-height: calc(100vh - 65px);
+  position: relative;
+  .loader-backdrop {
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+
+    &.loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(3px);
+    }
+  }
+}

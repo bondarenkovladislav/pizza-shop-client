@@ -15,6 +15,7 @@ export interface IProduct {
   id: string
   description: string
   title: string
+  img: string
 }
 //
 // export interface IState {

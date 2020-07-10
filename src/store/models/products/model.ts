@@ -1,5 +1,5 @@
 import { Dispatch, IProduct } from '../../store'
-import { ApiService } from '../../../classes/services/ApiService'
+import { appApi } from '../../../classes/services/ApiService'
 
 export type ProductsState = { [id: string]: IProduct }
 
@@ -17,7 +17,11 @@ export const products = {
   },
   effects: (dispatch: Dispatch) => ({
     async loadProducts() {
-      const productResults = await ApiService.fetchStock()
+      dispatch.loader.showLoader()
+      const productResults = (await appApi.getProducts()).data
+      setTimeout(() => {
+        dispatch.loader.hideLoader()
+      }, 5000)
       console.log(productResults)
       dispatch.products.productsLoaded(productResults)
     },
