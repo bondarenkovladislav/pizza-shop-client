@@ -1,5 +1,6 @@
-import { Dispatch, IProduct } from '../../store'
+import { Dispatch, IProduct, IRootState } from '../../store'
 import { appApi } from '../../../classes/services/ApiService'
+import { productByIdSelector } from './selectors'
 
 export type ProductsState = { [id: string]: IProduct }
 
@@ -14,16 +15,26 @@ export const products = {
         }, {}),
       }
     },
+    productLoaded: (state: ProductsState, payload: IProduct) => {
+      return { ...state, [payload.id]: payload }
+    },
   },
   effects: (dispatch: Dispatch) => ({
     async loadProducts() {
       dispatch.loader.showLoader()
       const productResults = (await appApi.getProducts()).data
-      setTimeout(() => {
-        dispatch.loader.hideLoader()
-      }, 5000)
+      dispatch.loader.hideLoader()
       console.log(productResults)
       dispatch.products.productsLoaded(productResults)
+    },
+    async loadProductById(id: string, state: IRootState) {
+      const product = productByIdSelector(id)(state)
+      if (!product) {
+        dispatch.loader.showLoader()
+        // TODO: api call
+        // dispatch.products.productLoaded()
+        dispatch.loader.hideLoader()
+      }
     },
   }),
 }
