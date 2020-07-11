@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { HomePage } from './pages/HomePage/HomePage'
 import { CartPage } from './pages/CartPage/CartPage'
@@ -8,8 +8,12 @@ import { PageNotFound } from './pages/PageNotFound/PageNotFound'
 import { ProductDetails } from './pages/ProductDetails/ProductDetails'
 import { Loader } from './components/Loader/Loader'
 import { PageWrapper } from './components/PageWrapper/PageWrapper'
+import { dispatch } from './store/store'
 
 const App = () => {
+  useEffect(() => {
+    dispatch.ingredients.loadIngredients()
+  }, [])
   return (
     <Router>
       <Navbar />

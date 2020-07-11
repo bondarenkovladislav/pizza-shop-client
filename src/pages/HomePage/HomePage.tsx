@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import styles from './HomePage.module.scss'
 import {
-  drinksSelector,
-  pizzasSelector,
+    drinksSelector,
+    pizzasWithIngredientsSelector,
 } from '../../store/models/products/selectors'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -11,13 +11,15 @@ import { dispatch } from '../../store/store'
 import { Typography } from '@material-ui/core'
 
 export const HomePage = () => {
-  const pizzas = useSelector(pizzasSelector)
+  const pizzas = useSelector(pizzasWithIngredientsSelector)
   const drinks = useSelector(drinksSelector)
   const history = useHistory()
 
   useEffect(() => {
     dispatch.products.loadProducts()
   }, [])
+
+    console.log(pizzas)
 
   return (
     <div className={styles.root}>

@@ -4,6 +4,8 @@ import { createSelector } from 'reselect'
 import { IProduct } from '../../../interfaces/IProduct'
 import { IPizza } from '../../../interfaces/IPizza'
 import { IDrink } from '../../../interfaces/IDrink'
+import { ingredientsStateSelector } from '../ingredients/selectors'
+import { IngredientsState } from '../ingredients/model'
 
 export const productsStateSelector: (state: IRootState) => ProductsState = (
   state: IRootState
@@ -35,4 +37,19 @@ export const drinksSelector = createSelector(
   productsSelector,
   (state: IProduct[]) =>
     state.filter((item) => item.type === 'drink') as IDrink[]
+)
+
+export const pizzasWithIngredientsSelector = createSelector(
+  pizzasSelector,
+  ingredientsStateSelector,
+  (pizzas: IPizza[], ingredients: IngredientsState) => {
+    return (pizzas || []).map((pizza) => {
+      return {
+        ...pizza,
+        ingredients: (pizza.ingredients || []).map(
+          (ingredientId) => ingredients[ingredientId]
+        ),
+      }
+    })
+  }
 )

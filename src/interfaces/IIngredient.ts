@@ -1,4 +1,5 @@
 export interface IIngredient {
-    price: number
-    name: string
+  id: string
+  price: number
+  name: string
 }
