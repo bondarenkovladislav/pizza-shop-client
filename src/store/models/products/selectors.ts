@@ -8,10 +8,14 @@ export const productsStateSelector: (state: IRootState) => ProductsState = (
 
 export const productsSelector = createSelector(
   productsStateSelector,
-  (state: ProductsState) => Object.keys(state).map((id) => state[id])
+  (state: ProductsState) => ({
+    isProductsFetched: state.isProductsFetched,
+    data: Object.keys(state.data).map((id) => state.data[id]),
+  })
 )
 
 export const productByIdSelector = (id: string) =>
-  createSelector(productsStateSelector, (state: ProductsState) => state[id])
-
-// TODO: create byId endpoint
+  createSelector(
+    productsStateSelector,
+    (state: ProductsState) => state.data[id]
+  )

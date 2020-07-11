@@ -10,8 +10,10 @@ export type ApiCall<P, T, B = void> = (
 
 export interface AppApi {
   getProducts: ApiCall<void, IProduct[]>
+  getProduct: ApiCall<string, IProduct>
 }
 
 export const appApi: AppApi = {
-  getProducts: () => axios.get(`${API_ROOT}/get-stock`),
+  getProducts: () => axios.get(`${API_ROOT}/get-products`),
+  getProduct: (id?: string) => axios.get(`${API_ROOT}/get-product?id=${id}`),
 }

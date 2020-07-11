@@ -2,21 +2,30 @@ import { Dispatch, IProduct, IRootState } from '../../store'
 import { appApi } from '../../../classes/services/ApiService'
 import { productByIdSelector } from './selectors'
 
-export type ProductsState = { [id: string]: IProduct }
+export type ProductsState = {
+  isProductsFetched: boolean
+  data: { [id: string]: IProduct }
+}
 
 export const products = {
-  state: {},
+  state: { isProductsFetched: false, data: {} },
   reducers: {
     productsLoaded: (state: ProductsState, payload: IProduct[]) => {
       return {
-        ...state,
-        ...payload.reduce((acc, product: IProduct) => {
-          return { ...acc, [product.id]: product }
-        }, {}),
+        isProductsFetched: true,
+        data: {
+          ...state.data,
+          ...payload.reduce((acc, product: IProduct) => {
+            return { ...acc, [product.id]: product }
+          }, {}),
+        },
       }
     },
     productLoaded: (state: ProductsState, payload: IProduct) => {
-      return { ...state, [payload.id]: payload }
+      return {
+        isProductsFetched: state.isProductsFetched,
+        data: { ...state.data, [payload.id]: payload },
+      }
     },
   },
   effects: (dispatch: Dispatch) => ({
@@ -24,15 +33,14 @@ export const products = {
       dispatch.loader.showLoader()
       const productResults = (await appApi.getProducts()).data
       dispatch.loader.hideLoader()
-      console.log(productResults)
       dispatch.products.productsLoaded(productResults)
     },
     async loadProductById(id: string, state: IRootState) {
       const product = productByIdSelector(id)(state)
       if (!product) {
         dispatch.loader.showLoader()
-        // TODO: api call
-        // dispatch.products.productLoaded()
+        const products = (await appApi.getProduct(id)).data
+        dispatch.products.productLoaded(products[0])
         dispatch.loader.hideLoader()
       }
     },
