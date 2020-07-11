@@ -3,3 +3,7 @@ export interface IIngredient {
   price: number
   name: string
 }
+
+export interface IIngredientOrderItem extends IIngredient {
+  amount: number
+}

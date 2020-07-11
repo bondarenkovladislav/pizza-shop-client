@@ -8,6 +8,5 @@ export const cartStateSelector: (state: IRootState) => CartState = (
 
 export const cartItemsCountSelector = createSelector(
   cartStateSelector,
-  (state: CartState) =>
-    Object.keys(state).reduce((acc, productId) => acc + state[productId], 0)
+  (state: CartState) => Object.keys(state).length
 )

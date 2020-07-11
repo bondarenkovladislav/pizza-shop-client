@@ -12,23 +12,22 @@ import {
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import styles from './ProductCard.module.scss'
 import { IProduct } from '../../interfaces/IProduct'
-import { dispatch } from '../../store/store'
 
 interface IProps {
   product: IProduct
   onProductSelected: () => void
+  onAddToCartClicked: () => void
 }
 
-export const ProductCard = ({ product, onProductSelected }: IProps) => {
+export const ProductCard = ({
+  product,
+  onProductSelected,
+  onAddToCartClicked,
+}: IProps) => {
   return (
     <Card className={styles.card}>
       <CardHeader
         avatar={<Avatar aria-label="recipe">R</Avatar>}
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
         title={product.title}
         subheader={`${product.price}$`}
       />
@@ -43,12 +42,7 @@ export const ProductCard = ({ product, onProductSelected }: IProps) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton
-          aria-label="add to card"
-          onClick={() => {
-            dispatch.cart.addToCart(product.id)
-          }}
-        >
+        <IconButton aria-label="add to card" onClick={onAddToCartClicked}>
           <ShoppingCartIcon />
         </IconButton>
       </CardActions>

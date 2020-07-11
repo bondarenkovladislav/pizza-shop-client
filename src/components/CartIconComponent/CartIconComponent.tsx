@@ -5,10 +5,14 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import { useSelector } from 'react-redux'
 import { cartItemsCountSelector } from '../../store/models/cart/selectors'
 
-export const CartIconComponent = () => {
+interface IProps {
+  onClick: () => void
+}
+
+export const CartIconComponent = (props: IProps) => {
   const itemsCount = useSelector(cartItemsCountSelector)
   return (
-    <IconButton aria-label="cart">
+    <IconButton aria-label="cart" onClick={props.onClick}>
       <Badge badgeContent={itemsCount} color="secondary">
         <ShoppingCartIcon />
       </Badge>

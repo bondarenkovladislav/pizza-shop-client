@@ -1,13 +1,16 @@
-export type CartState = { [productId: string]: number }
+import { IPizzaOrderItem } from '../../../interfaces/IPizza'
+
+export type CartState = { [id: string]: IPizzaOrderItem }
 
 export const cart = {
   state: {},
   reducers: {
-    addToCart: (state: CartState, productId: string) => {
-      return { ...state, [productId]: (state[productId] || 0) + 1 }
+    addToCart: (state: CartState, payload: IPizzaOrderItem) => {
+      return { ...state, [payload.idInCart]: payload }
     },
-    removeFromCart: (state: CartState, productId: string) => {
-      return { ...state, [productId]: Math.max((state[productId] || 0) - 1, 0) }
+    removeFromCart: (state: CartState, idInCart: string) => {
+      delete state[idInCart]
+      return state
     },
   },
 }

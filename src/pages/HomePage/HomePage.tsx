@@ -19,8 +19,6 @@ export const HomePage = () => {
     dispatch.products.loadProducts()
   }, [])
 
-    console.log(pizzas)
-
   return (
     <div className={styles.root}>
       <Typography variant={'h3'}>Pizzas</Typography>

@@ -1,5 +1,5 @@
 import { IProduct } from './IProduct'
-import { IIngredient } from './IIngredient'
+import { IIngredient, IIngredientOrderItem } from './IIngredient'
 
 export interface IPizza extends IProduct {
   ingredients: string[]
@@ -8,4 +8,9 @@ export interface IPizza extends IProduct {
 
 export interface IPizzaWithIngredients extends Omit<IPizza, 'ingredients'> {
   ingredients: IIngredient[]
+}
+
+export interface IPizzaOrderItem extends Omit<IPizza, 'ingredients'> {
+  idInCart: string
+  ingredients: IIngredientOrderItem[]
 }

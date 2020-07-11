@@ -12,10 +12,9 @@ export const Navbar = () => {
         <div className={styles.menuWrapper}>
           <div>
             <Button onClick={() => history.push('/')}>Home</Button>
-            <Button onClick={() => history.push('/cart')}>Cart</Button>
             <Button onClick={() => history.push('/order')}>Order</Button>
           </div>
-          <CartIconComponent />
+          <CartIconComponent onClick={() => history.push('/cart')} />
         </div>
       </Toolbar>
     </AppBar>
