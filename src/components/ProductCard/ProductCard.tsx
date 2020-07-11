@@ -1,5 +1,4 @@
 import React from 'react'
-import { IProduct } from '../../store/store'
 import {
   Card,
   Avatar,
@@ -12,6 +11,8 @@ import {
 } from '@material-ui/core'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import styles from './ProductCard.module.scss'
+import { IProduct } from '../../interfaces/IProduct'
+import { dispatch } from '../../store/store'
 
 interface IProps {
   product: IProduct
@@ -20,7 +21,7 @@ interface IProps {
 
 export const ProductCard = ({ product, onProductSelected }: IProps) => {
   return (
-    <Card onClick={onProductSelected} className={styles.card}>
+    <Card className={styles.card}>
       <CardHeader
         avatar={<Avatar aria-label="recipe">R</Avatar>}
         // action={
@@ -34,7 +35,7 @@ export const ProductCard = ({ product, onProductSelected }: IProps) => {
       <CardMedia
         className={styles.image}
         image={product.img}
-        title="Paella dish"
+        onClick={onProductSelected}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -42,7 +43,12 @@ export const ProductCard = ({ product, onProductSelected }: IProps) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to card">
+        <IconButton
+          aria-label="add to card"
+          onClick={() => {
+            dispatch.cart.addToCart(product.id)
+          }}
+        >
           <ShoppingCartIcon />
         </IconButton>
       </CardActions>

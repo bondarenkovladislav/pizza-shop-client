@@ -1,8 +1,8 @@
 import React from 'react'
-import { IProduct } from '../../store/store'
 import { ProductCard } from '../ProductCard/ProductCard'
 import styles from './ProductsGrid.module.scss'
 import { Grid } from '@material-ui/core'
+import {IProduct} from "../../interfaces/IProduct";
 
 interface IProps {
   products: IProduct[]

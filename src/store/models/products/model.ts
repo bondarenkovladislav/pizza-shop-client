@@ -1,6 +1,7 @@
-import { Dispatch, IProduct, IRootState } from '../../store'
+import { Dispatch, IRootState } from '../../store'
 import { appApi } from '../../../classes/services/ApiService'
 import { productByIdSelector } from './selectors'
+import {IProduct} from "../../../interfaces/IProduct";
 
 export type ProductsState = {
   isProductsFetched: boolean

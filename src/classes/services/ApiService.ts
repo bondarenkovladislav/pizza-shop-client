@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
-import { IProduct } from '../../store/store'
+import {IProduct} from "../../interfaces/IProduct";
 
 const API_ROOT = 'http://localhost:5000'
 
