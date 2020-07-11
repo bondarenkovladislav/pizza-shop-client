@@ -1,7 +1,7 @@
 import { Dispatch, IRootState } from '../../store'
 import { appApi } from '../../../classes/services/ApiService'
-import { productByIdSelector } from './selectors'
-import {IProduct} from "../../../interfaces/IProduct";
+import { productByIdSelector, productsFetchedSelector } from './selectors'
+import { IProduct } from '../../../interfaces/IProduct'
 
 export type ProductsState = {
   isProductsFetched: boolean
@@ -30,11 +30,14 @@ export const products = {
     },
   },
   effects: (dispatch: Dispatch) => ({
-    async loadProducts() {
-      dispatch.loader.showLoader()
-      const productResults = (await appApi.getProducts()).data
-      dispatch.loader.hideLoader()
-      dispatch.products.productsLoaded(productResults)
+    async loadProducts(payload: any, state: IRootState) {
+      const isProductsFetched = productsFetchedSelector(state)
+      if (!isProductsFetched) {
+        dispatch.loader.showLoader()
+        const productResults = (await appApi.getProducts()).data
+        dispatch.loader.hideLoader()
+        dispatch.products.productsLoaded(productResults)
+      }
     },
     async loadProductById(id: string, state: IRootState) {
       const product = productByIdSelector(id)(state)

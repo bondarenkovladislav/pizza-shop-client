@@ -1,25 +1,34 @@
 import React, { useEffect } from 'react'
 import styles from './HomePage.module.scss'
-import { dispatch } from '../../store/store'
-import { productsSelector } from '../../store/models/products/selectors'
+import {
+  drinksSelector,
+  pizzasSelector,
+} from '../../store/models/products/selectors'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { ProductsGrid } from '../../components/ProductsGrid/ProductsGrid'
+import { dispatch } from '../../store/store'
+import { Typography } from '@material-ui/core'
 
 export const HomePage = () => {
-  const products = useSelector(productsSelector)
+  const pizzas = useSelector(pizzasSelector)
+  const drinks = useSelector(drinksSelector)
   const history = useHistory()
 
   useEffect(() => {
-    if (!products.isProductsFetched) {
-      dispatch.products.loadProducts()
-    }
+    dispatch.products.loadProducts()
   }, [])
 
   return (
     <div className={styles.root}>
+      <Typography variant={'h3'}>Pizzas</Typography>
       <ProductsGrid
-        products={products.data}
+        products={pizzas}
+        onProductSelected={(id) => history.push(`/product/${id}`)}
+      />
+      <Typography variant={'h3'}>Drinks</Typography>
+      <ProductsGrid
+        products={drinks}
         onProductSelected={(id) => history.push(`/product/${id}`)}
       />
     </div>
