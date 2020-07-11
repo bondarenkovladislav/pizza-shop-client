@@ -10,27 +10,40 @@ import {
 } from '@material-ui/core'
 import { IngredientRow } from '../IngredientRow/IngredientRow'
 import { uuidv4 } from '../../core/UUID'
+import { IDrinkOrderItem } from '../../interfaces/IDrink'
+import { DrinkOptions } from '../DrinkOptions/DrinkOptions'
 // import styles from './AddToCartDialog.module.scss'
 
 interface IProps {
-  selectedProduct?: IPizzaWithIngredients
+  selectedProduct?: IPizzaWithIngredients | IDrinkOrderItem
   onClose: () => void
-  onApprove: (orderItem: IPizzaOrderItem) => void
+  onApprove: (orderItem: IPizzaOrderItem | IDrinkOrderItem) => void
 }
 
 export const AddToCartDialog = (props: IProps) => {
-  const [orderItem, setOrderItem] = useState<IPizzaOrderItem>()
+  const [orderItem, setOrderItem] = useState<
+    IPizzaOrderItem | IDrinkOrderItem
+  >()
 
   useEffect(() => {
     if (props.selectedProduct) {
-      setOrderItem({
-        ...props.selectedProduct,
-        idInCart: uuidv4(),
-        ingredients: props.selectedProduct.ingredients.map((ingredient) => ({
-          ...ingredient,
-          amount: 1,
-        })),
-      })
+      if ((props.selectedProduct as IPizzaOrderItem).ingredients) {
+        setOrderItem({
+          ...props.selectedProduct,
+          idInCart: uuidv4(),
+          ingredients: (props.selectedProduct as IPizzaOrderItem).ingredients.map(
+            (ingredient) => ({
+              ...ingredient,
+              amount: 1,
+            })
+          ),
+        } as IPizzaOrderItem)
+      } else {
+        setOrderItem({
+          ...props.selectedProduct,
+          idInCart: uuidv4(),
+        } as IDrinkOrderItem)
+      }
     }
   }, [props.selectedProduct])
 
@@ -45,19 +58,29 @@ export const AddToCartDialog = (props: IProps) => {
       <DialogTitle id="form-dialog-title">Choose Ingredients</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          {orderItem &&
-            orderItem.ingredients.map((ingredient, index) => (
-              <IngredientRow
-                ingredient={ingredient}
-                onChangeValue={(newIngredient) => {
-                  if (orderItem) {
-                    const newOrderItem = { ...orderItem }
-                    newOrderItem.ingredients.splice(index, 1, newIngredient)
-                    setOrderItem(newOrderItem)
-                  }
-                }}
-              />
-            ))}
+          {orderItem && (orderItem as IPizzaOrderItem).ingredients ? (
+            (orderItem as IPizzaOrderItem).ingredients.map(
+              (ingredient, index) => (
+                <IngredientRow
+                  ingredient={ingredient}
+                  onChangeValue={(newIngredient) => {
+                    if (orderItem) {
+                      const newOrderItem = { ...orderItem } as IPizzaOrderItem
+                      newOrderItem.ingredients.splice(index, 1, newIngredient)
+                      setOrderItem(newOrderItem)
+                    }
+                  }}
+                />
+              )
+            )
+          ) : (
+            <DrinkOptions
+              drinkItem={orderItem as IDrinkOrderItem}
+              onChangeValue={(newDrinkItem) =>
+                setOrderItem({ ...newDrinkItem })
+              }
+            />
+          )}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
