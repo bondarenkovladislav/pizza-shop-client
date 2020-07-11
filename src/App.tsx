@@ -7,19 +7,22 @@ import { Navbar } from './components/Navbar/Navbar'
 import { PageNotFound } from './pages/PageNotFound/PageNotFound'
 import { ProductDetails } from './pages/ProductDetails/ProductDetails'
 import { Loader } from './components/Loader/Loader'
+import { PageWrapper } from './components/PageWrapper/PageWrapper'
 
 const App = () => {
   return (
     <Router>
       <Navbar />
       <Loader>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/cart" component={CartPage} />
-          <Route exact path="/order" component={OrderPage} />
-          <Route exact path="/product/:id" component={ProductDetails} />
-          <Route component={PageNotFound} />
-        </Switch>
+        <PageWrapper>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/cart" component={CartPage} />
+            <Route exact path="/order" component={OrderPage} />
+            <Route exact path="/product/:id" component={ProductDetails} />
+            <Route component={PageNotFound} />
+          </Switch>
+        </PageWrapper>
       </Loader>
     </Router>
   )
