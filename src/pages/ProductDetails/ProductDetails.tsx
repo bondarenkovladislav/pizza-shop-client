@@ -7,7 +7,6 @@ import { dispatch } from '../../store/store'
 export const ProductDetails = () => {
   const { id } = useParams()
   const product = useSelector(productByIdSelector(id))
-  console.log(product)
 
   useEffect(() => {
     dispatch.products.loadProductById(id)
