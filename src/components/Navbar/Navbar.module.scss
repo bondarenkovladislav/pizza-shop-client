@@ -1,9 +1,19 @@
+@import 'src/assets/scss/vars';
+
 .menuWrapper {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 70%;
+  margin: 0 auto;
+  color: $font-color;
+  font-weight: bold;
 }
 
 .quickActions {
   display: flex;
 }
+
+.toolbar {
+  background-color: white;
+}
+

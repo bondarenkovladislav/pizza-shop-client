@@ -9,11 +9,16 @@ export const Navbar = () => {
   const history = useHistory()
   return (
     <AppBar position="fixed">
-      <Toolbar>
+      <Toolbar className={styles.toolbar}>
         <div className={styles.menuWrapper}>
           <div className={styles.quickActions}>
-            <MenuItem onClick={() => history.push('/')}>Home</MenuItem>
-            <MenuItem onClick={() => history.push('/order')}>Get orders</MenuItem>
+            <MenuItem
+              classes={{ root: styles.menuItem }}
+              onClick={() => history.push('/')}
+            >
+              MENU
+            </MenuItem>
+            <MenuItem onClick={() => history.push('/order')}>ORDERS</MenuItem>
           </div>
           <div className={styles.quickActions}>
             <CurrencyToggle />
