@@ -11,8 +11,8 @@ import {
 } from '@material-ui/core'
 import styles from './CartItemCard.module.scss'
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
-import {IPizzaOrderItem} from "../../interfaces/IPizza";
-import {IDrinkOrderItem} from "../../interfaces/IDrink";
+import { IPizzaOrderItem } from '../../interfaces/IPizza'
+import { IDrinkOrderItem } from '../../interfaces/IDrink'
 
 interface IProps {
   product: IPizzaOrderItem | IDrinkOrderItem
@@ -32,6 +32,15 @@ export const CartItemCard = ({ product, onRemoveFromCartClicked }: IProps) => {
         <Typography variant="body2" color="textSecondary" component="p">
           {product.description}
         </Typography>
+        <div>
+          {(product as IPizzaOrderItem).ingredients &&
+            (product as IPizzaOrderItem).ingredients.map((ingredient) => (
+              <p>{`${ingredient.name} : ${ingredient.amount}`}</p>
+            ))}
+          {(product as IDrinkOrderItem).litres && (
+            <p>{`Litres: ${(product as IDrinkOrderItem).litres}`}</p>
+          )}
+        </div>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to card" onClick={onRemoveFromCartClicked}>
