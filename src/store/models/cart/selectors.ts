@@ -12,6 +12,8 @@ export const cartItemsCountSelector = createSelector(
 )
 
 export const cartItemsSelector = createSelector(
-    cartStateSelector,
-    (state: CartState) => Object.keys(state).map((id) => state[id])
+  cartStateSelector,
+  (state: CartState) => {
+    return Object.keys(state).map((id) => state[id])
+  }
 )

@@ -13,6 +13,7 @@ import { dispatch } from './store/store'
 const App = () => {
   useEffect(() => {
     dispatch.ingredients.loadIngredients()
+    dispatch.cart.initCart()
   }, [])
   return (
     <Router>
