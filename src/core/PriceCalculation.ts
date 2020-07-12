@@ -1,7 +1,7 @@
 import { IPizzaOrderItem } from '../interfaces/IPizza'
 import { IDrinkOrderItem } from '../interfaces/IDrink'
 
-export const getCalculatedPrice = (
+export const getCalculatedItemPrice = (
   product?: IPizzaOrderItem | IDrinkOrderItem
 ) => {
   if (!product) {
@@ -21,3 +21,10 @@ export const getCalculatedPrice = (
     )
   }
 }
+
+export const getOrderTotalPrice = (
+  cartItems: (IPizzaOrderItem | IDrinkOrderItem)[],
+  deliveryCost: number
+) =>
+  cartItems.reduce((acc, item) => acc + getCalculatedItemPrice(item), 0) +
+  deliveryCost

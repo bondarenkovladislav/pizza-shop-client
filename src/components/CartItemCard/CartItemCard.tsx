@@ -14,7 +14,7 @@ import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import { IPizzaOrderItem } from '../../interfaces/IPizza'
 import { IDrinkOrderItem } from '../../interfaces/IDrink'
 import { useActualCurrency } from '../../core/useActualCurrency'
-import { getCalculatedPrice } from '../../core/PriceCalculation'
+import { getCalculatedItemPrice } from '../../core/PriceCalculation'
 
 interface IProps {
   product: IPizzaOrderItem | IDrinkOrderItem
@@ -22,7 +22,9 @@ interface IProps {
 }
 
 export const CartItemCard = ({ product, onRemoveFromCartClicked }: IProps) => {
-  const calculatedPrice = useMemo(() => getCalculatedPrice(product), [product])
+  const calculatedPrice = useMemo(() => getCalculatedItemPrice(product), [
+    product,
+  ])
   const currentPrice = useActualCurrency(calculatedPrice)
   return (
     <Card className={styles.card}>
