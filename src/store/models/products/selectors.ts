@@ -19,7 +19,23 @@ export const productsSelector = createSelector(
 export const productByIdSelector = (id: string) =>
   createSelector(
     productsStateSelector,
-    (state: ProductsState) => state.data[id]
+    ingredientsStateSelector,
+    (state: ProductsState, ingredients: IngredientsState) => {
+      const currentItem = state.data[id]
+      if (currentItem) {
+        if ((currentItem as IPizza).ingredients) {
+          return {
+            ...currentItem,
+            ingredients: (currentItem as IPizza).ingredients.map(
+              (ingredientId) => ingredients[ingredientId]
+            ),
+          }
+        }
+        return currentItem
+      } else {
+        return null
+      }
+    }
   )
 
 export const productsFetchedSelector = createSelector(
