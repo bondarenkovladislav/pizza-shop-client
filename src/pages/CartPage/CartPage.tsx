@@ -14,6 +14,7 @@ export const CartPage = () => {
     <div>
       <ProductsGrid<IPizzaOrderItem | IDrinkOrderItem>
         products={cartItems}
+        keyField={'idInCart'}
         cardTmpl={(product) => (
           <CartItemCard
             product={product}

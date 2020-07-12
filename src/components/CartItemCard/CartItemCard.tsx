@@ -34,9 +34,11 @@ export const CartItemCard = ({ product, onRemoveFromCartClicked }: IProps) => {
         </Typography>
         <div>
           {(product as IPizzaOrderItem).ingredients &&
-            (product as IPizzaOrderItem).ingredients.map((ingredient) => (
-              <p>{`${ingredient.name} : ${ingredient.amount}`}</p>
-            ))}
+            (product as IPizzaOrderItem).ingredients.map(
+              (ingredient, index) => (
+                <p key={index}>{`${ingredient.name} : ${ingredient.amount}`}</p>
+              )
+            )}
           {(product as IDrinkOrderItem).litres && (
             <p>{`Litres: ${(product as IDrinkOrderItem).litres}`}</p>
           )}

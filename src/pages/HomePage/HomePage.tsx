@@ -29,6 +29,7 @@ export const HomePage = () => {
     <div className={styles.root}>
       <Typography variant={'h3'}>Pizzas</Typography>
       <ProductsGrid<IPizzaWithIngredients>
+        keyField={'id'}
         products={pizzas}
         cardTmpl={(product) => (
           <ProductCard
@@ -42,6 +43,7 @@ export const HomePage = () => {
       />
       <Typography variant={'h3'}>Drinks</Typography>
       <ProductsGrid<IDrink>
+        keyField={'id'}
         products={drinks}
         cardTmpl={(product) => (
           <ProductCard
