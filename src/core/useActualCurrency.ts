@@ -7,10 +7,12 @@ const rates = new Map([
   [Currency.EUR, 0.89],
 ])
 
+export const getConvertedCurrencyValue = (value: number, currency: Currency) => ({
+  value: ((rates.get(currency) || 1) * value).toFixed(2),
+  symbol: currency === Currency.USD ? '$' : '€',
+})
+
 export const useActualCurrency = (value: number) => {
   const { currency } = useSelector(settingsSelector)
-  return {
-    value: ((rates.get(currency) || 1) * value).toFixed(2),
-    symbol: currency === Currency.USD ? '$' : '€',
-  }
+  return getConvertedCurrencyValue(value, currency)
 }
