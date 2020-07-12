@@ -1,0 +1,48 @@
+@import 'src/assets/scss/vars';
+
+.root {
+  height: 30vw;
+  display: flex;
+  background-image: url("https://assets.hongkiat.com/uploads/wood-textures/simple-wood-texture.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.image {
+  width: 70%;
+  height: auto;
+  animation: rotating 40s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.title {
+  text-align: center;
+  font-size: $fz-xxl * 1.5;
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: $spacer;
+}
+
+.container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.subTitle {
+  text-align: center;
+  font-size: $fz-lg;
+  margin: 0;
+}

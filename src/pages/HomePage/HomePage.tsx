@@ -12,6 +12,7 @@ import { ProductCard } from '../../components/ProductCard/ProductCard'
 import { AddToCartDialog } from '../../components/AddToCardDialog/AddToCartDialog'
 import { IPizzaWithIngredients } from '../../interfaces/IPizza'
 import { IDrink } from '../../interfaces/IDrink'
+import { MainSection } from '../../components/MainSection/MainSection'
 
 export const HomePage = () => {
   const [selectedCartProduct, setSelectedCartProduct] = useState()
@@ -26,6 +27,7 @@ export const HomePage = () => {
 
   return (
     <div className={styles.root}>
+      <MainSection />
       <p className={styles.title}>Pizza</p>
       <ProductsGrid<IPizzaWithIngredients>
         keyField={'id'}
