@@ -12,6 +12,7 @@ import {
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import styles from './ProductCard.module.scss'
 import { IProduct } from '../../interfaces/IProduct'
+import { useActualCurrency } from '../../core/useActualCurrency'
 
 interface IProps {
   product: IProduct
@@ -24,12 +25,13 @@ export const ProductCard = ({
   onProductSelected,
   onAddToCartClicked,
 }: IProps) => {
+  const currentPrice = useActualCurrency(product.price)
   return (
     <Card className={styles.card}>
       <CardHeader
         avatar={<Avatar aria-label="recipe">R</Avatar>}
         title={product.title}
-        subheader={`${product.price}$`}
+        subheader={`${currentPrice.value}${currentPrice.symbol}`}
       />
       <CardMedia
         className={styles.image}

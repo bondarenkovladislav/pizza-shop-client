@@ -13,6 +13,7 @@ import styles from './CartItemCard.module.scss'
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import { IPizzaOrderItem } from '../../interfaces/IPizza'
 import { IDrinkOrderItem } from '../../interfaces/IDrink'
+import { useActualCurrency } from '../../core/useActualCurrency'
 
 interface IProps {
   product: IPizzaOrderItem | IDrinkOrderItem
@@ -20,12 +21,13 @@ interface IProps {
 }
 
 export const CartItemCard = ({ product, onRemoveFromCartClicked }: IProps) => {
+  const currentPrice = useActualCurrency(product.price)
   return (
     <Card className={styles.card}>
       <CardHeader
         avatar={<Avatar aria-label="recipe">R</Avatar>}
         title={product.title}
-        subheader={`${product.price}$`}
+        subheader={`${currentPrice.value}${currentPrice.symbol}`}
       />
       <CardMedia className={styles.image} image={product.img} />
       <CardContent>
