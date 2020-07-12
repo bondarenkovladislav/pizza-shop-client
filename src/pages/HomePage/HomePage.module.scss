@@ -1,2 +1,10 @@
+@import 'src/assets/scss/vars';
+
 .root {
+}
+
+.title {
+  color: $font-color;
+  font-size: $fz-xl;
+  font-weight: bold;
 }

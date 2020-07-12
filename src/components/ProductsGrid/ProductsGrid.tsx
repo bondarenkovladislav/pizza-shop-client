@@ -17,7 +17,7 @@ export const ProductsGrid = <T,>({
     <div className={styles.root}>
       <Grid container spacing={2}>
         {products.map((product) => (
-          <Grid key={product[keyField]} container item xs={6} sm={4} md={3}>
+          <Grid key={product[keyField]} container item xs={6} sm={4}>
             {cardTmpl(product)}
           </Grid>
         ))}

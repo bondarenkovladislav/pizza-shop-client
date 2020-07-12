@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { ProductsGrid } from '../../components/ProductsGrid/ProductsGrid'
 import { dispatch } from '../../store/store'
-import { Typography } from '@material-ui/core'
 import { ProductCard } from '../../components/ProductCard/ProductCard'
 import { AddToCartDialog } from '../../components/AddToCardDialog/AddToCartDialog'
 import { IPizzaWithIngredients } from '../../interfaces/IPizza'
@@ -27,7 +26,7 @@ export const HomePage = () => {
 
   return (
     <div className={styles.root}>
-      <Typography variant={'h3'}>Pizzas</Typography>
+      <p className={styles.title}>Pizza</p>
       <ProductsGrid<IPizzaWithIngredients>
         keyField={'id'}
         products={pizzas}
@@ -41,7 +40,7 @@ export const HomePage = () => {
           />
         )}
       />
-      <Typography variant={'h3'}>Drinks</Typography>
+      <p className={styles.title}>Drinks</p>
       <ProductsGrid<IDrink>
         keyField={'id'}
         products={drinks}
