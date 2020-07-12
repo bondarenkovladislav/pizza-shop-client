@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import {
   Card,
   Avatar,
@@ -14,6 +14,7 @@ import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import { IPizzaOrderItem } from '../../interfaces/IPizza'
 import { IDrinkOrderItem } from '../../interfaces/IDrink'
 import { useActualCurrency } from '../../core/useActualCurrency'
+import { getCalculatedPrice } from '../../core/PriceCalculation'
 
 interface IProps {
   product: IPizzaOrderItem | IDrinkOrderItem
@@ -21,7 +22,8 @@ interface IProps {
 }
 
 export const CartItemCard = ({ product, onRemoveFromCartClicked }: IProps) => {
-  const currentPrice = useActualCurrency(product.price)
+  const calculatedPrice = useMemo(() => getCalculatedPrice(product), [product])
+  const currentPrice = useActualCurrency(calculatedPrice)
   return (
     <Card className={styles.card}>
       <CardHeader

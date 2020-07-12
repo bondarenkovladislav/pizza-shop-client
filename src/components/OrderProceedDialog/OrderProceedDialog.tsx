@@ -19,6 +19,7 @@ import { useSelector } from 'react-redux'
 import { settingsSelector } from '../../store/models/settings/selectors'
 import { getConvertedCurrencyValue } from '../../core/useActualCurrency'
 import { Currency } from '../../store/models/settings/model'
+import { getCalculatedPrice } from '../../core/PriceCalculation'
 
 interface IProps {
   show: boolean
@@ -76,15 +77,21 @@ export const OrderProceedDialog = (props: IProps) => {
         />
         {props.cartItems.map((cartItem) => (
           <p key={cartItem.idInCart}>{`${cartItem.title} : ${
-            getConvertedCurrencyValue(cartItem.price, currency).value
+            getConvertedCurrencyValue(getCalculatedPrice(cartItem), currency)
+              .value
           }${currency === Currency.USD ? '$' : '€'}`}</p>
         ))}
         <strong>
           Total price:{' '}
-          {getConvertedCurrencyValue(
-            props.cartItems.reduce((acc, item) => acc + item.price, 0),
-            currency
-          ).value}
+          {
+            getConvertedCurrencyValue(
+              props.cartItems.reduce(
+                (acc, item) => acc + getCalculatedPrice(item),
+                0
+              ),
+              currency
+            ).value
+          }
           {currency === Currency.USD ? '$' : '€'}
         </strong>
         <div>

@@ -28,7 +28,7 @@ export const DrinkOptions = (props: IProps) => {
         <span>{props.drinkItem.litres}</span>
         <IconButton
           onClick={() =>
-            props.drinkItem.litres > 0 &&
+            props.drinkItem.litres > 1 &&
             props.onChangeValue({
               ...props.drinkItem,
               litres: props.drinkItem.litres - 1,

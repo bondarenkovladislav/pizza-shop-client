@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { IPizzaOrderItem, IPizzaWithIngredients } from '../../interfaces/IPizza'
 import {
   Dialog,
@@ -12,6 +12,8 @@ import { IngredientRow } from '../IngredientRow/IngredientRow'
 import { uuidv4 } from '../../core/UUID'
 import { IDrinkOrderItem } from '../../interfaces/IDrink'
 import { DrinkOptions } from '../DrinkOptions/DrinkOptions'
+import { useActualCurrency } from '../../core/useActualCurrency'
+import { getCalculatedPrice } from '../../core/PriceCalculation'
 // import styles from './AddToCartDialog.module.scss'
 
 interface IProps {
@@ -24,6 +26,8 @@ export const AddToCartDialog = (props: IProps) => {
   const [orderItem, setOrderItem] = useState<
     IPizzaOrderItem | IDrinkOrderItem
   >()
+
+  const basicPrice = useActualCurrency(orderItem ? orderItem.price : 0)
 
   useEffect(() => {
     if (props.selectedProduct) {
@@ -47,6 +51,15 @@ export const AddToCartDialog = (props: IProps) => {
     }
   }, [props.selectedProduct])
 
+  const calculatedPrice = useMemo(() => getCalculatedPrice(orderItem), [
+    orderItem,
+  ])
+  const calculatedCurrencyPrice = useActualCurrency(calculatedPrice)
+
+  if (!orderItem) {
+    return <></>
+  }
+
   return (
     <Dialog
       open={!!props.selectedProduct}
@@ -57,8 +70,12 @@ export const AddToCartDialog = (props: IProps) => {
     >
       <DialogTitle id="form-dialog-title">Choose Ingredients</DialogTitle>
       <DialogContent>
+        <p>
+          Basic price: {basicPrice.value}
+          {basicPrice.symbol}
+        </p>
         <DialogContentText>
-          {orderItem && (orderItem as IPizzaOrderItem).ingredients ? (
+          {(orderItem as IPizzaOrderItem).ingredients ? (
             (orderItem as IPizzaOrderItem).ingredients.map(
               (ingredient, index) => (
                 <IngredientRow
@@ -81,16 +98,17 @@ export const AddToCartDialog = (props: IProps) => {
               }
             />
           )}
+          <p>
+            Calculated price: {calculatedCurrencyPrice.value}
+            {calculatedCurrencyPrice.symbol}
+          </p>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={props.onClose} color="primary">
           Cancel
         </Button>
-        <Button
-          onClick={() => orderItem && props.onApprove(orderItem)}
-          color="primary"
-        >
+        <Button onClick={() => props.onApprove(orderItem)} color="primary">
           Add to cart
         </Button>
       </DialogActions>
