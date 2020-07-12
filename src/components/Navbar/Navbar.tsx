@@ -13,7 +13,7 @@ export const Navbar = () => {
         <div className={styles.menuWrapper}>
           <div className={styles.quickActions}>
             <MenuItem onClick={() => history.push('/')}>Home</MenuItem>
-            <MenuItem onClick={() => history.push('/order')}>Order</MenuItem>
+            <MenuItem onClick={() => history.push('/order')}>Get orders</MenuItem>
           </div>
           <div className={styles.quickActions}>
             <CurrencyToggle />

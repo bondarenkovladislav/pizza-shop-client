@@ -27,13 +27,15 @@ export const CartPage = () => {
           />
         )}
       />
-      <Button
-        variant={'contained'}
-        color={'secondary'}
-        onClick={() => setShowOrderDialog(true)}
-      >
-        Proceed order
-      </Button>
+      {!!cartItems.length && (
+        <Button
+          variant={'contained'}
+          color={'secondary'}
+          onClick={() => setShowOrderDialog(true)}
+        >
+          Proceed order
+        </Button>
+      )}
       <OrderProceedDialog
         show={showOrderDialog}
         onClose={() => setShowOrderDialog(false)}

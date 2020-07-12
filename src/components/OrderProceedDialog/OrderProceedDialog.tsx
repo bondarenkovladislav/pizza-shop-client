@@ -20,6 +20,8 @@ import { settingsSelector } from '../../store/models/settings/selectors'
 import { getConvertedCurrencyValue } from '../../core/useActualCurrency'
 import { Currency } from '../../store/models/settings/model'
 import { getCalculatedPrice } from '../../core/PriceCalculation'
+import { appApi } from '../../core/ApiConfig'
+import { dispatch } from '../../store/store'
 
 interface IProps {
   show: boolean
@@ -118,7 +120,17 @@ export const OrderProceedDialog = (props: IProps) => {
         <Button onClick={props.onClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={() => props.onOrderApprove({})} color="primary">
+        <Button
+          onClick={async () => {
+            await appApi.createOrder(undefined, {
+              items: props.cartItems,
+              orderInfo: formState,
+            })
+            props.onClose()
+            dispatch.cart.clearCart()
+          }}
+          color="primary"
+        >
           Approve
         </Button>
       </DialogActions>

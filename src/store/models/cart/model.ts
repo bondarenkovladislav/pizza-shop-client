@@ -28,5 +28,9 @@ export const cart = {
       }
       return {}
     },
+    clearCart: () => {
+      localStorage.removeItem(CART_CACHE_KEY)
+      return {}
+    }
   },
 }
