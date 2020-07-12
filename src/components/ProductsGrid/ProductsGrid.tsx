@@ -1,46 +1,22 @@
-import React, { useState } from 'react'
-import { ProductCard } from '../ProductCard/ProductCard'
+import React from 'react'
 import styles from './ProductsGrid.module.scss'
 import { Grid } from '@material-ui/core'
-import { IProduct } from '../../interfaces/IProduct'
-import { AddToCartDialog } from '../AddToCardDialog/AddToCartDialog'
-import { dispatch } from '../../store/store'
 
-interface IProps {
-  products: IProduct[]
-  onProductSelected: (id: string) => void
+interface IProps<T> {
+  products: T[]
+  cardTmpl: (product: T) => JSX.Element
 }
 
-export const ProductsGrid = ({ products, onProductSelected }: IProps) => {
-  const [selectedCartProduct, setSelectedCartProduct] = useState()
-
+export const ProductsGrid = <T,>({ products, cardTmpl }: IProps<T>) => {
   return (
     <div className={styles.root}>
       <Grid container spacing={2}>
         {products.map((product) => (
-          <Grid key={product.id} container item xs={6} sm={4} md={3}>
-            <ProductCard
-              product={product}
-              onProductSelected={() => {
-                onProductSelected(product.id)
-              }}
-              onAddToCartClicked={() => {
-                setSelectedCartProduct(product)
-              }}
-            />
+          <Grid container item xs={6} sm={4} md={3}>
+            {cardTmpl(product)}
           </Grid>
         ))}
       </Grid>
-      <AddToCartDialog
-        selectedProduct={selectedCartProduct}
-        onClose={() => {
-          setSelectedCartProduct(undefined)
-        }}
-        onApprove={(orderItem) => {
-          dispatch.cart.addToCart(orderItem)
-          setSelectedCartProduct(undefined)
-        }}
-      />
     </div>
   )
 }

@@ -10,3 +10,8 @@ export const cartItemsCountSelector = createSelector(
   cartStateSelector,
   (state: CartState) => Object.keys(state).length
 )
+
+export const cartItemsSelector = createSelector(
+    cartStateSelector,
+    (state: CartState) => Object.keys(state).map((id) => state[id])
+)
