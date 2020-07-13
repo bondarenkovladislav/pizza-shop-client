@@ -1,16 +1,6 @@
 import React, { useMemo } from 'react'
-import {
-  Card,
-  Avatar,
-  CardHeader,
-  IconButton,
-  CardMedia,
-  CardContent,
-  Typography,
-  CardActions,
-} from '@material-ui/core'
+import { Card, CardMedia, Button } from '@material-ui/core'
 import styles from './CartItemCard.module.scss'
-import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import { IPizzaOrderItem } from '../../interfaces/IPizza'
 import { IDrinkOrderItem } from '../../interfaces/IDrink'
 import { useActualCurrency } from '../../core/useActualCurrency'
@@ -28,33 +18,39 @@ export const CartItemCard = ({ product, onRemoveFromCartClicked }: IProps) => {
   const currentPrice = useActualCurrency(calculatedPrice)
   return (
     <Card className={styles.card}>
-      <CardHeader
-        avatar={<Avatar aria-label="recipe">R</Avatar>}
-        title={product.title}
-        subheader={`${currentPrice.value}${currentPrice.symbol}`}
-      />
-      <CardMedia className={styles.image} image={product.img} />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {product.description}
-        </Typography>
-        <div>
+      <div>
+        <CardMedia className={styles.image} image={product.img} />
+        <p className={styles.header}>{product.title}</p>
+        <p className={styles.description}>{product.description}</p>
+        <div className={styles.productContainer}>
           {(product as IPizzaOrderItem).ingredients &&
             (product as IPizzaOrderItem).ingredients.map(
               (ingredient, index) => (
-                <p key={index}>{`${ingredient.name} : ${ingredient.amount}`}</p>
+                <p
+                  className={styles.ingredient}
+                  key={index}
+                >{`${ingredient.name} : ${ingredient.amount}`}</p>
               )
             )}
           {(product as IDrinkOrderItem).litres && (
             <p>{`Litres: ${(product as IDrinkOrderItem).litres}`}</p>
           )}
         </div>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to card" onClick={onRemoveFromCartClicked}>
-          <RemoveShoppingCartIcon />
-        </IconButton>
-      </CardActions>
+      </div>
+      <div className={styles.footer}>
+        <Button
+          variant="contained"
+          color={'primary'}
+          className={styles.stockButton}
+          onClick={onRemoveFromCartClicked}
+        >
+          REMOVE FROM STOCK
+        </Button>
+        <span className={styles.price}>
+          {currentPrice.value}
+          {currentPrice.symbol}
+        </span>
+      </div>
     </Card>
   )
 }

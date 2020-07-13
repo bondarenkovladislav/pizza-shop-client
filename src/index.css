@@ -17,6 +17,7 @@ html, #root {
 html,body {
   margin: 0;
   padding: 0;
+  background: #f8f8f8;
 }
 
 * {

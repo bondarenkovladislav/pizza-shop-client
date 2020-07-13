@@ -57,10 +57,10 @@ export const AddToCartDialog = (props: IProps) => {
             orderItem={orderItem}
             setOrderItem={setOrderItem}
           />
-          <p>
+          <strong>
             Calculated price: {calculatedCurrencyPrice.value}
             {calculatedCurrencyPrice.symbol}
-          </p>
+          </strong>
         </DialogContentText>
       </DialogContent>
       <DialogActions>

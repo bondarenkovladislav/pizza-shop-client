@@ -1,0 +1,18 @@
+@import 'src/assets/scss/vars';
+
+.root {
+  height: 100%;
+}
+
+.title {
+  color: $font-color;
+  font-size: $fz-xl;
+  font-weight: bold;
+}
+
+.proceedContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2 * $spacer;
+}

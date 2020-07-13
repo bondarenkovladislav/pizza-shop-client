@@ -8,13 +8,15 @@ import { IPizzaOrderItem } from '../../interfaces/IPizza'
 import { IDrinkOrderItem } from '../../interfaces/IDrink'
 import { Button } from '@material-ui/core'
 import { OrderProceedDialog } from '../../components/OrderProceedDialog/OrderProceedDialog'
+import styles from './CartPage.module.scss'
 
 export const CartPage = () => {
   const cartItems = useSelector(cartItemsSelector)
   const [showOrderDialog, setShowOrderDialog] = useState(false)
 
   return (
-    <div>
+    <div className={styles.root}>
+      <p className={styles.title}>Cart</p>
       <ProductsGrid<IPizzaOrderItem | IDrinkOrderItem>
         products={cartItems}
         keyField={'idInCart'}
@@ -28,13 +30,15 @@ export const CartPage = () => {
         )}
       />
       {!!cartItems.length && (
-        <Button
-          variant={'contained'}
-          color={'secondary'}
-          onClick={() => setShowOrderDialog(true)}
-        >
-          Proceed order
-        </Button>
+        <div className={styles.proceedContainer}>
+          <Button
+            variant={'contained'}
+            color={'secondary'}
+            onClick={() => setShowOrderDialog(true)}
+          >
+            Proceed order
+          </Button>
+        </div>
       )}
       <OrderProceedDialog
         show={showOrderDialog}
