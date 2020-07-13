@@ -1,3 +1,20 @@
+@import 'src/assets/scss/vars';
+
+.root {
+  margin: -$spacer;
+}
+
 .formControl {
   min-width: 150px;
+}
+
+.formContainer {
+  margin: $spacer;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: $spacer / 2;
 }

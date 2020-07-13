@@ -53,7 +53,7 @@ export const OrderProceedDialog = (props: IProps) => {
             props.onClose()
             dispatch.cart.clearCart()
           }}
-          color="primary"
+          color="secondary"
         >
           Approve
         </Button>

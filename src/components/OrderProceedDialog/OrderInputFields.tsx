@@ -16,41 +16,48 @@ interface IProps {
 
 export const OrderInputFields = ({ formState, setFormState }: IProps) => {
   return (
-    <div>
-      <TextField
-        label={'Full Name'}
-        value={formState.fullName || ''}
-        onChange={(e) =>
-          setFormState({ ...formState, fullName: e.target.value })
-        }
-      />
-      <TextField
-        label={'Country'}
-        value={formState.country || ''}
-        onChange={(e) =>
-          setFormState({ ...formState, country: e.target.value })
-        }
-      />
-      <TextField
-        label={'Address'}
-        value={formState.address || ''}
-        onChange={(e) =>
-          setFormState({ ...formState, address: e.target.value })
-        }
-      />
-      <TextField
-        label={'Phone Number'}
-        value={formState.phoneNumber || ''}
-        type="number"
-        onChange={(e) =>
-          setFormState({
-            ...formState,
-            phoneNumber: parseInt(e.target.value),
-          })
-        }
-      />
-
-      <div>
+    <div className={styles.root}>
+      <div className={styles.row}>
+        <TextField
+          variant="filled"
+          label={'Full Name'}
+          value={formState.fullName || ''}
+          onChange={(e) =>
+            setFormState({ ...formState, fullName: e.target.value })
+          }
+        />
+        <TextField
+          variant="filled"
+          label={'Country'}
+          value={formState.country || ''}
+          onChange={(e) =>
+            setFormState({ ...formState, country: e.target.value })
+          }
+        />
+      </div>
+      <div className={styles.row}>
+        <TextField
+          variant="filled"
+          label={'Address'}
+          value={formState.address || ''}
+          onChange={(e) =>
+            setFormState({ ...formState, address: e.target.value })
+          }
+        />
+        <TextField
+          variant="filled"
+          label={'Phone Number'}
+          value={formState.phoneNumber || ''}
+          type="number"
+          onChange={(e) =>
+            setFormState({
+              ...formState,
+              phoneNumber: parseInt(e.target.value),
+            })
+          }
+        />
+      </div>
+      <div className={styles.formContainer}>
         <FormControl className={styles.formControl}>
           <InputLabel id="payment-select-label">Payment Method</InputLabel>
           <Select
