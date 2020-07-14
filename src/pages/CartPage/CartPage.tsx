@@ -9,10 +9,12 @@ import { IDrinkOrderItem } from '../../interfaces/IDrink'
 import { Button } from '@material-ui/core'
 import { OrderProceedDialog } from '../../components/OrderProceedDialog/OrderProceedDialog'
 import styles from './CartPage.module.scss'
+import { useHistory } from 'react-router-dom'
 
 export const CartPage = () => {
   const cartItems = useSelector(cartItemsSelector)
   const [showOrderDialog, setShowOrderDialog] = useState(false)
+  const history = useHistory()
 
   return (
     <div className={styles.root}>
@@ -26,6 +28,7 @@ export const CartPage = () => {
             onRemoveFromCartClicked={() => {
               dispatch.cart.removeFromCart(product.idInCart)
             }}
+            onProductClicked={() => history.push(`/product/${product.id}`)}
           />
         )}
       />

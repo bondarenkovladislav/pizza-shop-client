@@ -8,10 +8,15 @@ import { getCalculatedItemPrice } from '../../core/PriceCalculation'
 
 interface IProps {
   product: IPizzaOrderItem | IDrinkOrderItem
-  onRemoveFromCartClicked: () => void
+  onProductClicked?: () => void
+  onRemoveFromCartClicked?: () => void
 }
 
-export const CartItemCard = ({ product, onRemoveFromCartClicked }: IProps) => {
+export const CartItemCard = ({
+  product,
+  onRemoveFromCartClicked,
+  onProductClicked,
+}: IProps) => {
   const calculatedPrice = useMemo(() => getCalculatedItemPrice(product), [
     product,
   ])
@@ -19,7 +24,11 @@ export const CartItemCard = ({ product, onRemoveFromCartClicked }: IProps) => {
   return (
     <Card className={styles.card}>
       <div>
-        <CardMedia className={styles.image} image={product.img} />
+        <CardMedia
+          className={styles.image}
+          image={product.img}
+          onClick={() => onProductClicked && onProductClicked()}
+        />
         <p className={styles.header}>{product.title}</p>
         <p className={styles.description}>{product.description}</p>
         <div className={styles.productContainer}>
@@ -38,14 +47,16 @@ export const CartItemCard = ({ product, onRemoveFromCartClicked }: IProps) => {
         </div>
       </div>
       <div className={styles.footer}>
-        <Button
-          variant="contained"
-          color={'primary'}
-          className={styles.stockButton}
-          onClick={onRemoveFromCartClicked}
-        >
-          REMOVE FROM STOCK
-        </Button>
+        {!onRemoveFromCartClicked && (
+          <Button
+            variant="contained"
+            color={'primary'}
+            className={styles.stockButton}
+            onClick={onRemoveFromCartClicked}
+          >
+            REMOVE FROM STOCK
+          </Button>
+        )}
         <span className={styles.price}>
           {currentPrice.value}
           {currentPrice.symbol}

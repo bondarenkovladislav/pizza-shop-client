@@ -5,7 +5,7 @@ import { Grid } from '@material-ui/core'
 interface IProps<T> {
   products: T[]
   cardTmpl: (product: T) => JSX.Element
-  keyField: string
+  keyField?: string
 }
 
 export const ProductsGrid = <T,>({
@@ -16,8 +16,14 @@ export const ProductsGrid = <T,>({
   return (
     <div className={styles.root}>
       <Grid container spacing={2}>
-        {products.map((product) => (
-          <Grid key={product[keyField]} container item xs={6} sm={4}>
+        {products.map((product, index) => (
+          <Grid
+            key={keyField ? product[keyField] : index}
+            container
+            item
+            xs={6}
+            sm={4}
+          >
             {cardTmpl(product)}
           </Grid>
         ))}

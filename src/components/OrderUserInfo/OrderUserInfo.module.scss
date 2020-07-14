@@ -1,0 +1,5 @@
+@import 'src/assets/scss/vars';
+.row {
+  display: flex;
+  margin-bottom: 2 * $spacer;
+}
