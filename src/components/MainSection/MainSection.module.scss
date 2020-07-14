@@ -3,7 +3,7 @@
 .root {
   height: 30vw;
   display: flex;
-  background-image: url("https://assets.hongkiat.com/uploads/wood-textures/simple-wood-texture.jpg");
+  background-image: url('https://assets.hongkiat.com/uploads/wood-textures/simple-wood-texture.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -22,7 +22,6 @@
     transform: rotate(360deg);
   }
 }
-
 
 .title {
   text-align: center;
@@ -45,4 +44,14 @@
   text-align: center;
   font-size: $fz-lg;
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: $fz-lg;
+  }
+
+  .subTitle {
+    font-size: $fz-sm;
+  }
 }

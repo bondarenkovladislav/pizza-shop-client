@@ -41,6 +41,14 @@
 }
 
 .row {
+  margin-top: $spacer;
   display: flex;
   justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .price {
+    font-size: $fz-lg;
+    line-height: 30px;
+  }
 }

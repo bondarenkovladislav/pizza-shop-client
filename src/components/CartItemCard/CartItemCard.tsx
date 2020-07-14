@@ -39,10 +39,6 @@ export const CartItemCard = ({
                 <div className={styles.row}>
                   <IngredientItem ingredient={ingredient} />
                   <p>{ingredient.amount}</p>
-                  {/*<p*/}
-                  {/*  className={styles.ingredient}*/}
-                  {/*  key={index}*/}
-                  {/*>{`${ingredient.name} : ${ingredient.amount}`}</p>*/}
                 </div>
               )
             )}
@@ -52,14 +48,14 @@ export const CartItemCard = ({
         </div>
       </div>
       <div className={styles.footer}>
-        {!onRemoveFromCartClicked && (
+        {onRemoveFromCartClicked && (
           <Button
             variant="contained"
             color={'primary'}
             className={styles.stockButton}
             onClick={onRemoveFromCartClicked}
           >
-            REMOVE FROM STOCK
+            REMOVE
           </Button>
         )}
         <span className={styles.price}>
