@@ -19,7 +19,9 @@ export const OrderInputFields = ({ formState, setFormState }: IProps) => {
     <div className={styles.root}>
       <div className={styles.row}>
         <TextField
-          variant="filled"
+          error={!formState.fullName}
+          helperText={'Field is required'}
+          variant="outlined"
           label={'Full Name'}
           value={formState.fullName || ''}
           onChange={(e) =>
@@ -27,7 +29,7 @@ export const OrderInputFields = ({ formState, setFormState }: IProps) => {
           }
         />
         <TextField
-          variant="filled"
+          variant="outlined"
           label={'Country'}
           value={formState.country || ''}
           onChange={(e) =>
@@ -37,7 +39,7 @@ export const OrderInputFields = ({ formState, setFormState }: IProps) => {
       </div>
       <div className={styles.row}>
         <TextField
-          variant="filled"
+          variant="outlined"
           label={'Address'}
           value={formState.address || ''}
           onChange={(e) =>
@@ -45,7 +47,9 @@ export const OrderInputFields = ({ formState, setFormState }: IProps) => {
           }
         />
         <TextField
-          variant="filled"
+          error={!formState.phoneNumber}
+          helperText={'Field is required'}
+          variant="outlined"
           label={'Phone Number'}
           value={formState.phoneNumber || ''}
           type="number"

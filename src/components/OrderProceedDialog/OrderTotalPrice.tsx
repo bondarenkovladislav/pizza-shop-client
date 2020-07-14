@@ -5,9 +5,8 @@ import { IPizzaOrderItem } from '../../interfaces/IPizza'
 import { IDrinkOrderItem } from '../../interfaces/IDrink'
 import { useSelector } from 'react-redux'
 import { settingsSelector } from '../../store/models/settings/selectors'
-import {
-  getOrderTotalPrice,
-} from '../../core/PriceCalculation'
+import { getOrderTotalPrice } from '../../core/PriceCalculation'
+import styles from './OrderProceedDialog.module.scss'
 
 interface IProps {
   cartItems: (IPizzaOrderItem | IDrinkOrderItem)[]
@@ -16,7 +15,7 @@ interface IProps {
 export const OrderTotalPrice = ({ cartItems }: IProps) => {
   const { currency, deliveryCost } = useSelector(settingsSelector)
   return (
-    <strong>
+    <strong className={styles.totalPrice}>
       Total price:{' '}
       {
         getConvertedCurrencyValue(

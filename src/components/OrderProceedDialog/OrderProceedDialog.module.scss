@@ -10,11 +10,25 @@
 
 .formContainer {
   margin: $spacer;
+  padding-bottom: $spacer * 2;
 }
 
 .row {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: $spacer / 2;
+  margin: $spacer $spacer / 2;
+}
+
+.title {
+  color: $font-color;
+}
+
+.orderItemsRoot {
+  color: $font-color;
+  margin: $spacer * 3 0;
+}
+
+.totalPrice {
+  color: $font-color;
 }

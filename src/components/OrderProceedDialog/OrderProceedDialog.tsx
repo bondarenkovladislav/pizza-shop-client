@@ -14,7 +14,8 @@ import { dispatch } from '../../store/store'
 import { OrderInputFields } from './OrderInputFields'
 import { OrderItems } from './OrderItems'
 import { OrderTotalPrice } from './OrderTotalPrice'
-
+import styles from './OrderProceedDialog.module.scss'
+import { useHistory } from 'react-router-dom'
 interface IProps {
   show: boolean
   onClose: () => void
@@ -24,6 +25,7 @@ interface IProps {
 
 export const OrderProceedDialog = (props: IProps) => {
   const [formState, setFormState] = useState<IOrderInfo>({} as IOrderInfo)
+  const history = useHistory()
   return (
     <Dialog
       open={props.show}
@@ -32,7 +34,7 @@ export const OrderProceedDialog = (props: IProps) => {
       fullWidth
       maxWidth={'xs'}
     >
-      <DialogTitle id="form-dialog-title">
+      <DialogTitle className={styles.title} id="form-dialog-title">
         Provide personal information
       </DialogTitle>
       <DialogContent>
@@ -45,6 +47,7 @@ export const OrderProceedDialog = (props: IProps) => {
           Cancel
         </Button>
         <Button
+          disabled={!formState.fullName || !formState.phoneNumber}
           onClick={async () => {
             await appApi.createOrder(undefined, {
               items: props.cartItems,
@@ -52,6 +55,7 @@ export const OrderProceedDialog = (props: IProps) => {
             })
             props.onClose()
             dispatch.cart.clearCart()
+            history.push('/')
           }}
           color="secondary"
         >
