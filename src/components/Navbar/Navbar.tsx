@@ -12,6 +12,13 @@ export const Navbar = () => {
       <Toolbar className={styles.toolbar}>
         <div className={styles.menuWrapper}>
           <div className={styles.quickActions}>
+            <img
+              className={styles.logo}
+              src={
+                'https://cdn1.iconfinder.com/data/icons/birthday-30/64/pizza_food_slice_piece_fast_-512.png'
+              }
+              alt="Bosch Logo"
+            />
             <MenuItem
               classes={{ root: styles.menuItem }}
               onClick={() => history.push('/')}
