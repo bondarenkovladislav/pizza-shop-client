@@ -50,3 +50,9 @@
 .ingredient {
   text-transform: capitalize;
 }
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 $spacer / -2;
+}

@@ -5,6 +5,7 @@ import { IPizzaOrderItem } from '../../interfaces/IPizza'
 import { IDrinkOrderItem } from '../../interfaces/IDrink'
 import { useActualCurrency } from '../../core/useActualCurrency'
 import { getCalculatedItemPrice } from '../../core/PriceCalculation'
+import { IngredientItem } from '../IngredientItem/IngredientItem'
 
 interface IProps {
   product: IPizzaOrderItem | IDrinkOrderItem
@@ -35,10 +36,14 @@ export const CartItemCard = ({
           {(product as IPizzaOrderItem).ingredients &&
             (product as IPizzaOrderItem).ingredients.map(
               (ingredient, index) => (
-                <p
-                  className={styles.ingredient}
-                  key={index}
-                >{`${ingredient.name} : ${ingredient.amount}`}</p>
+                <div className={styles.row}>
+                  <IngredientItem ingredient={ingredient} />
+                  <p>{ingredient.amount}</p>
+                  {/*<p*/}
+                  {/*  className={styles.ingredient}*/}
+                  {/*  key={index}*/}
+                  {/*>{`${ingredient.name} : ${ingredient.amount}`}</p>*/}
+                </div>
               )
             )}
           {(product as IDrinkOrderItem).litres && (
