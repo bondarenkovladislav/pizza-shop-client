@@ -4,6 +4,7 @@ import styles from './IngredientRow.module.scss'
 import { IconButton } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
+import { IngredientItem } from '../IngredientItem/IngredientItem'
 
 interface IProps {
   ingredient: IIngredientOrderItem
@@ -13,7 +14,7 @@ interface IProps {
 export const IngredientRow = (props: IProps) => {
   return (
     <div className={styles.root}>
-      <span className={styles.name}>{props.ingredient.name}</span>
+      <IngredientItem ingredient={props.ingredient} />
       <div>
         <IconButton
           onClick={() =>

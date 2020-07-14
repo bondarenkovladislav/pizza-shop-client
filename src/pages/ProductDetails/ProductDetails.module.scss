@@ -1,0 +1,46 @@
+@import 'src/assets/scss/vars';
+.root {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  color: $font-color;
+}
+
+.halfCell {
+  width: 50%;
+  padding: 0 $spacer * 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+}
+
+.title {
+  font-size: $fz-xxl;
+  margin-top: 0;
+  font-weight: 500;
+  margin-bottom: $spacer * 3;
+  color: black;
+}
+
+.ingredientsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -$spacer;
+}
+
+.price {
+  color: black;
+  font-weight: bold;
+  font-size: $fz-xxl;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}

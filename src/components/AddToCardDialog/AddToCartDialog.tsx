@@ -44,7 +44,7 @@ export const AddToCartDialog = (props: IProps) => {
       onClose={props.onClose}
       aria-labelledby="form-dialog-title"
       fullWidth
-      maxWidth={'sm'}
+      maxWidth={'xs'}
     >
       <DialogTitle id="form-dialog-title">Choose Ingredients</DialogTitle>
       <DialogContent>
@@ -67,7 +67,7 @@ export const AddToCartDialog = (props: IProps) => {
         <Button onClick={props.onClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={() => props.onApprove(orderItem)} color="primary">
+        <Button onClick={() => props.onApprove(orderItem)} color="secondary">
           Add to cart
         </Button>
       </DialogActions>

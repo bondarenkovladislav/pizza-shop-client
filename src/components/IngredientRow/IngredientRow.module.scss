@@ -1,3 +1,5 @@
+@import 'src/assets/scss/vars';
+
 .name {
   text-transform: capitalize;
 }
@@ -5,4 +7,5 @@
 .root {
   display: flex;
   justify-content: space-between;
+  margin: $spacer ($spacer/ -2);
 }
