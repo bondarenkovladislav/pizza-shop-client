@@ -18,48 +18,56 @@ export const OrderInputFields = ({ formState, setFormState }: IProps) => {
   return (
     <div className={styles.root}>
       <div className={styles.row}>
-        <TextField
-          error={!formState.fullName}
-          helperText={'Field is required'}
-          variant="outlined"
-          label={'Full Name'}
-          value={formState.fullName || ''}
-          onChange={(e) =>
-            setFormState({ ...formState, fullName: e.target.value })
-          }
-        />
-        <TextField
-          variant="outlined"
-          label={'Country'}
-          value={formState.country || ''}
-          onChange={(e) =>
-            setFormState({ ...formState, country: e.target.value })
-          }
-        />
+        <div className={styles.input}>
+          <TextField
+            error={!formState.fullName}
+            helperText={'Field is required'}
+            variant="outlined"
+            label={'Full Name'}
+            value={formState.fullName || ''}
+            onChange={(e) =>
+              setFormState({ ...formState, fullName: e.target.value })
+            }
+          />
+        </div>
+        <div className={styles.input}>
+          <TextField
+            variant="outlined"
+            label={'Country'}
+            value={formState.country || ''}
+            onChange={(e) =>
+              setFormState({ ...formState, country: e.target.value })
+            }
+          />
+        </div>
       </div>
       <div className={styles.row}>
-        <TextField
-          variant="outlined"
-          label={'Address'}
-          value={formState.address || ''}
-          onChange={(e) =>
-            setFormState({ ...formState, address: e.target.value })
-          }
-        />
-        <TextField
-          error={!formState.phoneNumber}
-          helperText={'Field is required'}
-          variant="outlined"
-          label={'Phone Number'}
-          value={formState.phoneNumber || ''}
-          type="number"
-          onChange={(e) =>
-            setFormState({
-              ...formState,
-              phoneNumber: parseInt(e.target.value),
-            })
-          }
-        />
+        <div className={styles.input}>
+          <TextField
+            variant="outlined"
+            label={'Address'}
+            value={formState.address || ''}
+            onChange={(e) =>
+              setFormState({ ...formState, address: e.target.value })
+            }
+          />
+        </div>
+        <div className={styles.input}>
+          <TextField
+            error={!formState.phoneNumber}
+            helperText={'Field is required'}
+            variant="outlined"
+            label={'Phone Number'}
+            value={formState.phoneNumber || ''}
+            type="number"
+            onChange={(e) =>
+              setFormState({
+                ...formState,
+                phoneNumber: parseInt(e.target.value),
+              })
+            }
+          />
+        </div>
       </div>
       <div className={styles.formContainer}>
         <FormControl className={styles.formControl}>

@@ -21,7 +21,7 @@ export const ProductsGrid = <T,>({
             key={keyField ? product[keyField] : index}
             container
             item
-            xs={6}
+            xs={12}
             sm={4}
           >
             {cardTmpl(product)}

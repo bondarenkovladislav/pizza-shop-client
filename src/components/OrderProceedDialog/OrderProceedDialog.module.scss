@@ -16,8 +16,9 @@
 .row {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: $spacer $spacer / 2;
+  flex-wrap: wrap;
 }
 
 .title {
@@ -31,4 +32,8 @@
 
 .totalPrice {
   color: $font-color;
+}
+
+.input {
+  margin: $spacer / 2;
 }

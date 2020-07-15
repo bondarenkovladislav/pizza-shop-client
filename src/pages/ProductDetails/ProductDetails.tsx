@@ -7,7 +7,7 @@ import { useActualCurrency } from '../../core/useActualCurrency'
 import { IPizzaWithIngredients } from '../../interfaces/IPizza'
 import styles from './ProductDetails.module.scss'
 import { IngredientItem } from '../../components/IngredientItem/IngredientItem'
-import { Button } from '@material-ui/core'
+import { Button, Grid } from '@material-ui/core'
 import { AddToCartDialog } from '../../components/AddToCardDialog/AddToCartDialog'
 
 export const ProductDetails = () => {
@@ -26,11 +26,15 @@ export const ProductDetails = () => {
   }
 
   return (
-    <div className={styles.root}>
-      <div className={styles.halfCell}>
+    // <div className={styles.root}
+    //   >
+    <Grid container spacing={2}>
+      {/*<div className={styles.halfCell}>*/}
+      <Grid container item xs={12} sm={6}>
         <img className={styles.img} src={product.img} />
-      </div>
-      <div className={styles.halfCell}>
+      </Grid>
+      {/*<div className={styles.halfCell}>*/}
+      <Grid container item xs={12} sm={6} className={styles.halfCell}>
         <div>
           <p className={styles.title}>{product.title}</p>
           <p>{product.description}</p>
@@ -55,7 +59,7 @@ export const ProductDetails = () => {
             IN STOCK
           </Button>
         </div>
-      </div>
+      </Grid>
       <AddToCartDialog
         selectedProduct={selectedCartProduct}
         onClose={() => {
@@ -67,6 +71,6 @@ export const ProductDetails = () => {
           history.push('/cart')
         }}
       />
-    </div>
+    </Grid>
   )
 }
