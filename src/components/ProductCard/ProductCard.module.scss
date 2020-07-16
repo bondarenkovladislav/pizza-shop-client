@@ -7,6 +7,9 @@
 .card {
   width: 100%;
   min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .header {

@@ -18,13 +18,15 @@ export const ProductCard = ({
   const currentPrice = useActualCurrency(product.price)
   return (
     <Card className={styles.card}>
-      <CardMedia
-        className={styles.image}
-        image={product.img}
-        onClick={onProductSelected}
-      />
-      <p className={styles.header}>{product.title}</p>
-      <p className={styles.description}>{product.description}</p>
+      <div>
+        <CardMedia
+          className={styles.image}
+          image={product.img}
+          onClick={onProductSelected}
+        />
+        <p className={styles.header}>{product.title}</p>
+        <p className={styles.description}>{product.description}</p>
+      </div>
       <div className={styles.footer}>
         <Button
           variant="contained"
