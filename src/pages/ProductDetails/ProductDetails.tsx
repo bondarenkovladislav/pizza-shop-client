@@ -22,11 +22,10 @@ export const ProductDetails = () => {
   }, [id])
 
   if (!product) {
-    return <div>Waiting for product</div>
+    return <></>
   }
 
-  return (
-    <Grid container spacing={2}>
+  return (<Grid container spacing={2}>
       <Grid container item xs={12} sm={6}>
         <img className={styles.img} src={product.img} />
       </Grid>
@@ -72,6 +71,5 @@ export const ProductDetails = () => {
           history.push('/cart')
         }}
       />
-    </Grid>
-  )
+    </Grid>)
 }
