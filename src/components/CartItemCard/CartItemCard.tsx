@@ -34,14 +34,12 @@ export const CartItemCard = ({
         <p className={styles.description}>{product.description}</p>
         <div className={styles.productContainer}>
           {(product as IPizzaOrderItem).ingredients &&
-            (product as IPizzaOrderItem).ingredients.map(
-              (ingredient, index) => (
-                <div className={styles.row}>
-                  <IngredientItem ingredient={ingredient} />
-                  <p>{ingredient.amount}</p>
-                </div>
-              )
-            )}
+            (product as IPizzaOrderItem).ingredients.map((ingredient) => (
+              <div key={`${product.id}${ingredient.id}`} className={styles.row}>
+                <IngredientItem ingredient={ingredient} />
+                <p>{ingredient.amount}</p>
+              </div>
+            ))}
           {(product as IDrinkOrderItem).litres && (
             <p>{`Litres: ${(product as IDrinkOrderItem).litres}`}</p>
           )}

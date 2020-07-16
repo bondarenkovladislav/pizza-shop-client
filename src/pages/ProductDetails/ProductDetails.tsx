@@ -42,7 +42,12 @@ export const ProductDetails = () => {
             {(product as IPizzaWithIngredients).ingredients &&
               (product as IPizzaWithIngredients).ingredients.map(
                 (ingredient) =>
-                  ingredient && <IngredientItem ingredient={ingredient} />
+                  ingredient && (
+                    <IngredientItem
+                      key={ingredient.id}
+                      ingredient={ingredient}
+                    />
+                  )
               )}
           </div>
         </div>
