@@ -22,18 +22,14 @@ export const ProductDetails = () => {
   }, [id])
 
   if (!product) {
-    return <></>
+    return <div>Waiting for product</div>
   }
 
   return (
-    // <div className={styles.root}
-    //   >
     <Grid container spacing={2}>
-      {/*<div className={styles.halfCell}>*/}
       <Grid container item xs={12} sm={6}>
         <img className={styles.img} src={product.img} />
       </Grid>
-      {/*<div className={styles.halfCell}>*/}
       <Grid container item xs={12} sm={6} className={styles.halfCell}>
         <div>
           <p className={styles.title}>{product.title}</p>
