@@ -24,7 +24,7 @@ export const ProductCard = ({
           image={product.img}
           onClick={onProductSelected}
         />
-        <p className={styles.header}>{product.title}</p>
+        <p className={styles.header} onClick={onProductSelected}>{product.title}</p>
         <p className={styles.description}>{product.description}</p>
       </div>
       <div className={styles.footer}>

@@ -30,7 +30,12 @@ export const CartItemCard = ({
           image={product.img}
           onClick={() => onProductClicked && onProductClicked()}
         />
-        <p className={styles.header}>{product.title}</p>
+        <p
+          className={styles.header}
+          onClick={() => onProductClicked && onProductClicked()}
+        >
+          {product.title}
+        </p>
         <p className={styles.description}>{product.description}</p>
         <div className={styles.productContainer}>
           {(product as IPizzaOrderItem).ingredients &&
